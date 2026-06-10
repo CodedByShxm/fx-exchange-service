@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: fx-exchange-service
+  datasource:
+    url: jdbc:postgresql://db.pyviemhntldtrsmjqmdx.supabase.co:5432/postgres
+    username: postgres
+    password: FatPussyGyal27!
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8080
+
+fx:
+  api:
+    key: 89b8f757e81a5ca45859a8f2b9dce596
