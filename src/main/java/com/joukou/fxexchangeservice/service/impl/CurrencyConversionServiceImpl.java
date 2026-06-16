@@ -5,6 +5,7 @@ import com.joukou.fxexchangeservice.dto.*;
 import com.joukou.fxexchangeservice.entity.ConversionHistory;
 import com.joukou.fxexchangeservice.repository.ConversionHistoryRepository;
 import com.joukou.fxexchangeservice.service.CurrencyConversionService;
+import com.joukou.fxexchangeservice.service.ExchangeRateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class CurrencyConversionServiceImpl implements CurrencyConversionService {
 
-    private final ExchangeRateClient exchangeRateClient;
+    private final ExchangeRateService exchangeRateService;
     private final ConversionHistoryRepository repository;
 
     private static final int RATE_SCALE = 6;
@@ -25,7 +26,7 @@ public class CurrencyConversionServiceImpl implements CurrencyConversionService 
     @Override
     public ConversionResponse convert(ConversionRequest request) {
 
-        BigDecimal rate = exchangeRateClient.getRate(
+        BigDecimal rate = exchangeRateService.getRate(
                 request.getFromCurrency(),
                 request.getToCurrency()
         ).setScale(RATE_SCALE, RoundingMode.HALF_UP);
